@@ -1,10 +1,16 @@
 package pageobjects;
 
 import io.qameta.allure.Step;
+import lombok.Getter;
 import models.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
+@Getter
 public class ConstructorPage {
 
     private By constructorTabRolls = By.xpath(".//span[text()='Булки']");
@@ -14,13 +20,13 @@ public class ConstructorPage {
     private By choiceSauces = By.xpath(".//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect')]/span[text()='Соусы']");
     private By choiceToppings = By.xpath(".//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect')]/span[text()='Начинки']");
 
-    public By getChoiceRolls(){
+    public By selectedRolls(){
         return choiceRolls;
     }
-    public By getChoiceSauces(){
+    public By selectedSauces(){
         return choiceSauces;
     }
-    public By getChoiceToppings(){
+    public By selectedToppings(){
         return choiceToppings;
     }
 
@@ -28,19 +34,23 @@ public class ConstructorPage {
         driver.get(Constants.URL);
     }
 
+
     @Step("Нажать вкладку Булки")
-    public void clickConstructorTabRolls(WebDriver driver) {
+    public void clickConstructorTabRolls(WebDriver driver) throws InterruptedException  {
         driver.findElement(constructorTabRolls).click();
+        Thread.sleep(1000);
     }
 
     @Step("Нажать вкладку Соусы")
-    public void clickConstructorTabSauces(WebDriver driver) {
+    public void clickConstructorTabSauces(WebDriver driver) throws InterruptedException {
         driver.findElement(constructorTabSauces).click();
+        Thread.sleep(1000);
     }
 
     @Step("Нажать вкладку Начинка")
-    public void clickConstructorTabToppings(WebDriver driver) {
+    public void clickConstructorTabToppings(WebDriver driver) throws InterruptedException {
         driver.findElement(constructorTabToppings).click();
+        Thread.sleep(1000);
     }
 
     @Step("Проверяем выбранную вкладку конструктора")

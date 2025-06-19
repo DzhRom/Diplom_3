@@ -30,8 +30,7 @@ public class LoginUserTest {
 
     @Before
     public void setUp() {
-        driver = ChoiceWebDriver.createWebDriver("chrome");
-
+        driver = ChoiceWebDriver.createWebDriver();
         mainPage = new MainPage();
         mainPage.getUrl(driver);
         loginPage = new LoginPage();
@@ -47,7 +46,7 @@ public class LoginUserTest {
     @Test
     @DisplayName("authorization Account Button (Авторизация через кнопку \"Войти в аккаунт\"")
     @Description("Проверка входа в аккаунт по кнопке «Войти в аккаунт» на главной")
-    public void authorizationAccountButtonTest(){
+    public void authorizationAccountButtonTest() throws InterruptedException {
         mainPage.clickLogInToYourAccount(driver);
         loginPage.enterTheDataUser(driver,  user.getEmail(), user.getPassword());
         loginPage.clickButtonEnter(driver);
@@ -57,7 +56,7 @@ public class LoginUserTest {
     @Test
     @DisplayName("authorization Button Personal Account Test (Авторизация через кнопку \"Личный кабинет\")")
     @Description("Проверка входа в аккаунт через кнопку «Личный кабинет»")
-    public void authorizationButtonPersonalAccountTest(){
+    public void authorizationButtonPersonalAccountTest() throws InterruptedException {
         regPage.clickButtonPersonalAccount(driver);
         loginPage.enterTheDataUser(driver,  user.getEmail(), user.getPassword());
         loginPage.clickButtonEnter(driver);
@@ -67,7 +66,7 @@ public class LoginUserTest {
     @Test
     @DisplayName("authorization Button Enter Page Registration (Авторизация через кнопку \"Войти\" на странице регистрации)")
     @Description("Проверка входа в аккаунт через кнопку в форме регистрации")
-    public void authorizationButtonEnterPageRegistrationTest(){
+    public void authorizationButtonEnterPageRegistrationTest() throws InterruptedException {
         regPage.loadingRegistrationPage(driver);
         regPage.enterClick(driver);
         loginPage.enterTheDataUser(driver,  user.getEmail(), user.getPassword());
@@ -78,7 +77,7 @@ public class LoginUserTest {
     @Test
     @DisplayName("authorization Button Password Recovery Test (Авторизация через кнопку \"Восстановить пароль\"")
     @Description("Проверка входа в аккаунт через кнопку в форме восстановления пароля")
-    public void authorizationButtonPasswordRecoveryTest(){
+    public void authorizationButtonPasswordRecoveryTest() throws InterruptedException {
         regPage.clickButtonPersonalAccount(driver);
         loginPage.clickButtonPasswordRecovery(driver);
         regPage.enterClick(driver);

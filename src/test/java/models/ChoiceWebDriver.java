@@ -1,13 +1,24 @@
 package models;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aeonbits.owner.ConfigCache;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
+
+
 public class ChoiceWebDriver {
 
-    public static WebDriver createWebDriver(String browser){
+    public static Configuration configuration() {
+        return ConfigCache.getOrCreate(Configuration.class);
+    }
+
+
+
+    public static WebDriver createWebDriver(){
+        String browser = configuration().browser();
         if (browser == null) {
             return createChromeDriver();
         }

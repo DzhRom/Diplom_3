@@ -54,7 +54,7 @@ public class UserStep {
     public void deleteUserStep(String accessToken){
         requestSpecification()
                 .auth().oauth2(accessToken)
-                .delete("https://stellarburgers.nomoreparties.site/api/auth/user")
+                .delete(Constants.API_DELETE_USER)
                 .then();
     }
 

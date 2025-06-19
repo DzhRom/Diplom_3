@@ -34,10 +34,11 @@ public class RegistrationPage {
     }
 
     @Step("Ввод данных нового пользователя")
-    public void setDataNewUser(WebDriver driver, String email, String password, String name) {
+    public void setDataNewUser(WebDriver driver, String email, String password, String name) throws InterruptedException {
         driver.findElement(fieldNameRegister).sendKeys(name);
         driver.findElement(fieldEmailRegister).sendKeys(email);
         driver.findElement(fieldPasswordRegister).sendKeys(password);
+        Thread.sleep(300);
         driver.findElement(registerButton).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(buttonEnter));

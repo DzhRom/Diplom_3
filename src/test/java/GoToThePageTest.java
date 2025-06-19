@@ -30,9 +30,8 @@ public class GoToThePageTest {
 
 
     @Before
-    public void setUp() {
-        driver = ChoiceWebDriver.createWebDriver("chrome");
-
+    public void setUp() throws InterruptedException  {
+        driver = ChoiceWebDriver.createWebDriver();
         loginPage = new LoginPage();
         mainPage = new MainPage();
         regPage = new RegistrationPage();
@@ -51,7 +50,7 @@ public class GoToThePageTest {
     @Test
     @DisplayName("going To The Personal Account Test (Переход на страницу \"Личный кабинет\"")
     @Description("Проверка перехода по клику на «Личный кабинет» в личный кабинет пользователя")
-    public void goingToThePersonalAccountTest(){
+    public void goingToThePersonalAccountTest() throws InterruptedException {
         regPage.clickButtonPersonalAccount(driver);
         assertEquals(loginPage.getNameUserValue(driver), user.getEmail());
     }

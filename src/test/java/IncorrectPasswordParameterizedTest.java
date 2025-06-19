@@ -29,8 +29,7 @@ public class IncorrectPasswordParameterizedTest {
 
     @Before
     public void setUp() {
-        driver = ChoiceWebDriver.createWebDriver("chrome");
-
+        driver = ChoiceWebDriver.createWebDriver();
         regPage = new RegistrationPage();
         regPage.getUrl(driver);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);

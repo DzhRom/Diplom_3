@@ -30,8 +30,7 @@ public class LogoutTest {
 
     @Before
     public void setUp() {
-        driver = ChoiceWebDriver.createWebDriver("chrome");
-
+        driver = ChoiceWebDriver.createWebDriver();
         mainPage = new MainPage();
         loginPage = new LoginPage();
         regPage = new RegistrationPage();
@@ -46,7 +45,7 @@ public class LogoutTest {
     @Test
     @DisplayName("logout Test (Выход из системы)")
     @Description("Проверь выход по кнопке «Выйти» в личном кабинете")
-    public void logoutTest() {
+    public void logoutTest() throws InterruptedException {
 
         regPage.clickButtonPersonalAccount(driver);
         loginPage.enterTheDataUser(driver,  user.getEmail(), user.getPassword());

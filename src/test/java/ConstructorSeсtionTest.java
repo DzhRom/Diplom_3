@@ -6,12 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.ConstructorPage;
-
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -23,45 +18,35 @@ public class ConstructorSeсtionTest {
 
     @Before
     public void setUp() {
-        driver = ChoiceWebDriver.createWebDriver("chrome");
-
+        driver = ChoiceWebDriver.createWebDriver();
         constructorPage = new ConstructorPage();
         constructorPage.getUrl(driver);
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     @Test
     @DisplayName("constructor Sauces ")
     @Description("Проверка перехода в раздел «Соусы»")
-    public void constructorSauces() {
+    public void constructorSauces() throws InterruptedException {
         constructorPage.clickConstructorTabSauces(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(constructorPage.getChoiceSauces()));
-        assertTrue(constructorPage.isVisibilityConstructorSelection(driver, constructorPage.getChoiceSauces()));
-
+        assertTrue(constructorPage.isVisibilityConstructorSelection(driver, constructorPage.selectedSauces()));
     }
 
     @Test
     @DisplayName("constructor Toppings ")
     @Description("Проверка перехода в раздел  «Начинки»")
-    public void constructorToppings() {
+    public void constructorToppings() throws InterruptedException {
         constructorPage.clickConstructorTabToppings(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(constructorPage.getChoiceToppings()));
-        assertTrue(constructorPage.isVisibilityConstructorSelection(driver, constructorPage.getChoiceToppings()));
-
+        assertTrue(constructorPage.isVisibilityConstructorSelection(driver, constructorPage.selectedToppings()));
     }
 
 
     @Test
     @DisplayName("constructor Rolls ")
     @Description("Проверка перехода в раздел «Булки»")
-    public void constructorRolls() {
+    public void constructorRolls()  throws InterruptedException{
         constructorPage.clickConstructorTabSauces(driver);
         constructorPage.clickConstructorTabRolls(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(constructorPage.getChoiceRolls()));
-        assertTrue(constructorPage.isVisibilityConstructorSelection(driver, constructorPage.getChoiceRolls()));
+        assertTrue(constructorPage.isVisibilityConstructorSelection(driver, constructorPage.selectedRolls()));
     }
 
     @After

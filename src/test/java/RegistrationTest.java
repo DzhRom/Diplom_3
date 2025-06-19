@@ -11,8 +11,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pageobjects.RegistrationPage;
 
+
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -30,10 +33,10 @@ public class RegistrationTest {
     private ValidatableResponse response;
     private String token;
 
+
     @Before
     public void setUp() {
-        driver = ChoiceWebDriver.createWebDriver("chrome");
-
+        driver = ChoiceWebDriver.createWebDriver();
         regPage = new RegistrationPage();
         regPage.getUrl(driver);
         user = fakerUser.fakerUser();
@@ -45,7 +48,7 @@ public class RegistrationTest {
     @Test
     @DisplayName("registration User Test (тест регистрации пользователя)")
     @Description("Проверка регистрации пользователя")
-    public void registrationUserTest(){
+    public void registrationUserTest() throws InterruptedException {
         regPage.loadingRegistrationPage(driver);
         regPage.setDataNewUser(driver, user.getEmail(), user.getPassword(), user.getName());
         response = userStep.authorizationUserStep(loginUser);

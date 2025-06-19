@@ -17,11 +17,8 @@ public class LoginPage {
     private By fieldPasswordEnterPage = By.xpath(".//input[@name='Пароль']");
     private By buttonPasswordRecovery = By.xpath(".//a[text()='Восстановить пароль']");
 
-    private By getValueLogin = By.xpath(".//main/div/div/div/ul/li[2]/div/div/input[@class='text input__textfield text_type_main-default input__textfield-disabled']");
+    private By getValueLogin = By.xpath("//li[2]//input[@class='text input__textfield text_type_main-default input__textfield-disabled']");
 
-    public void getUrl(WebDriver driver) {
-        driver.get(Constants.URL);
-    }
 
     @Step("Нажать кнопку \"Войти\" ")
     public void clickButtonEnter(WebDriver driver) {
@@ -29,9 +26,10 @@ public class LoginPage {
     }
 
     @Step("Ввести данные пользователя для авторизации")
-    public void enterTheDataUser(WebDriver driver, String email, String password) {
+    public void enterTheDataUser(WebDriver driver, String email, String password) throws InterruptedException {
         driver.findElement(fieldEmailEnterPage).sendKeys(email);
         driver.findElement(fieldPasswordEnterPage).sendKeys(password);
+        Thread.sleep(300);
     }
 
     @Step("Нажать кнопку Восстановить пароль")
@@ -40,8 +38,9 @@ public class LoginPage {
     }
 
     @Step("Получения атрибута value логина в личном кабинете для проверки авторизации")
-    public String getNameUserValue(WebDriver driver) {
+    public String getNameUserValue(WebDriver driver) throws InterruptedException{
         driver.findElement(personalAccountButton).click();
+        Thread.sleep(300);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(getValueLogin));
         String value = driver.findElement(getValueLogin).getAttribute("value");
